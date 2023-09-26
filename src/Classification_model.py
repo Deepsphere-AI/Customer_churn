@@ -43,7 +43,7 @@ def Classification_models(vAR_input_model_type):
 
             # Model Training
             if vAR_input_model_type == 'Logistic Regression':
-                rf_classifier = LogisticRegression(random_state=42)
+                rf_classifier = DecisionTreeClassifier(random_state=42)
             if vAR_input_model_type == 'Decision Trees':
                 rf_classifier = DecisionTreeClassifier(random_state=42)
             if vAR_input_model_type == 'Random Forest':
