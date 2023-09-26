@@ -15,7 +15,7 @@ st.markdown(
 )
 from PIL import Image
 import os
-from src.Main import QuestionAnswering
+from src.Main import customerchurn
 
 with open('style/final.css') as f:
         st.markdown(f"<style>{f.read()}</style>",unsafe_allow_html=True)
@@ -63,6 +63,6 @@ if __name__ == "__main__":
     # try:
         
         if selected == 'Machine Learning':
-            QuestionAnswering()
+            customerchurn()
     # except Exception as e:
     #     raise CustomException(e,sys)
