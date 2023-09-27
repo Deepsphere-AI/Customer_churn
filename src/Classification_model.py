@@ -27,6 +27,7 @@ def Classification_models(vAR_input_model_type):
     tr1,tr2,tr3,tr4= st.columns((.7,3,4,1))
     w1111,col1111,col2222,w2222= st.columns((.7,3,4,1))
     cc22,cc11,cc33=st.columns((1.5,7,.1))
+    ee1,ee2,ee3,ee4= st.columns((.7,3,4,1))
     w4,col4,col44,w44= st.columns((.7,3,4,1))
     w5,col5,col55,w55= st.columns((.7,3,4,1))
     cc222,cc111,cc333=st.columns((1.5,7,.1))
@@ -121,10 +122,7 @@ def Classification_models(vAR_input_model_type):
                                     with cc11:
                                         st.write("# ")
                                         st.write(testing_data)
-                            with col44:
-                                st.write("")
-                                if st.button("Test the Model"):
-                                    st.success("Testing Process Completed")
+                            
                             
                             show_testing_data = pd.read_excel(vAR_input_test_data)
                             
@@ -138,6 +136,14 @@ def Classification_models(vAR_input_model_type):
 
                             # Predicting the target variable for Testing Data
                             y_pred_test = rf_classifier.predict(X_test)
+                        except:
+                            with ee3:
+                                st.warning("Upload correct testing dataset")
+                        else:
+                            with col44:
+                                st.write("")
+                                if st.button("Test the Model"):
+                                    st.success("Testing Process Completed")
                             with col5:
                                 st.write("# ")
                                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Result</span></p>", unsafe_allow_html=True)
@@ -156,5 +162,4 @@ def Classification_models(vAR_input_model_type):
                                             if result =="Explainable AI":
                                                 with ex2:
                                                     explain_model(rf_classifier, X_test)  # Assuming rf_classifier is your trained model
-                        except:
-                            st.warning("Upload correct testing dataset")
+                            
