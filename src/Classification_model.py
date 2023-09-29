@@ -70,13 +70,14 @@ def Classification_models(vAR_input_model_type):
             X_train = training_data.drop(['CustomerID', 'Purchase Date', 'Service Start Date', 'Churn'], axis=1)
             y_train = training_data['Churn']
 
-            # Model Training
+            # Model Selection
             if vAR_input_model_type == 'Decision Trees':
                 rf_classifier = DecisionTreeClassifier(random_state=42)
             elif vAR_input_model_type == 'Random Forest':
                 rf_classifier = RandomForestClassifier(random_state=42)
             rf_classifier.fit(X_train, y_train)
 
+            # Feature selection
             with col111:
                 st.write("# ")
                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Feature Selection</span></p>", unsafe_allow_html=True)
@@ -90,11 +91,12 @@ def Classification_models(vAR_input_model_type):
                     if st.button("Extract"):
                         with col222:
                             st.success("Extracted successfully")
+            # Hyper parameter
             if vAR_input_feature_selection != []:
                 with hy2:
                     st.write("# ")
                     st.write("# ")
-                    st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Hyper Perameter</span></p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Hyper Parameter</span></p>", unsafe_allow_html=True)
                 with hy3:
                     st.write("# ")
                     random=st.number_input("Random state",value=42,step=3,min_value=10,max_value=90)
@@ -106,6 +108,8 @@ def Classification_models(vAR_input_model_type):
                         st.write("# ")
                         if st.button("Train the Model"):
                             st.success("Training Process Completed")
+                    
+                    # Model Testing
                     with col1111:
                         st.write("### ")
                         st.write("## ")
@@ -147,6 +151,8 @@ def Classification_models(vAR_input_model_type):
                             with col5:
                                 st.write("# ")
                                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Result</span></p>", unsafe_allow_html=True)
+                            
+                            # Model Prediction
                             with col55:
                                 result=st.selectbox("",["Select","Model Outcome","Explainable AI"])
                                 if result != "Select":
@@ -158,6 +164,7 @@ def Classification_models(vAR_input_model_type):
                                                 selected_feature['Predicted'] = y_pred_test
                                                 st.write("# ")
                                                 st.write(selected_feature)
+                                        # Explainable AI
                                         with col55:
                                             if result =="Explainable AI":
                                                 with ex2:
