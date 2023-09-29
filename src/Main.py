@@ -13,12 +13,14 @@ def customerchurn():
         st.write("### ")
         st.write(" ")
         st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Problem Statement</span></p>", unsafe_allow_html=True)
+    # Select box for problem statement
     with col2:
         vAR_input_problem_type = st.selectbox(' ',['Select the Problem Statement','Customer Churn: Who is going to churn?','Customer Churn: When will the churn occur?','Customer Churn: Why does the churn occurs?'])
     if vAR_input_problem_type == 'Customer Churn: Who is going to churn?':
         with col1:
             st.write("## ")
             st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Problem type</span></p>", unsafe_allow_html=True)
+        # Select box for problem type
         with col2:
             vAR_input_type = st.selectbox(' ',['Select','Classification','Regression','Clustring'])
         
@@ -27,7 +29,9 @@ def customerchurn():
                 st.write("### ")
                 st.write("### ")
                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Model Selection </span></p>", unsafe_allow_html=True)
+            # Select box for Model selection
             with col2:
                 vAR_input_model_type = st.selectbox(' ',['Select','Decision Trees','Random Forest'])
             if vAR_input_model_type != "Select":
+                # Calling classification function and passing the selected model
                 Classification_models(vAR_input_model_type)
