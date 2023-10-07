@@ -1,2 +1,3 @@
 # Customer_churn
-App: https://customerchurn-machinelearning.streamlit.app/
+Streamlit Share App: https://customerchurn-machinelearning.streamlit.app/
+GCP link: https://customerchurnupdatedversion-klqdvccjxq-ue.a.run.app/
