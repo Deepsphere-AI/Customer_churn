@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from streamlit.components.v1 import html
 
 def explain_model(model, X_test):
     # Create a SHAP explainer object
@@ -20,12 +21,12 @@ def explain_model(model, X_test):
 
 def Classification_models(vAR_input_model_type):
     # creating columns 
-    w1,col1,col2,w2= st.columns((.7,3,4,1))
+    w1,col1,col2,w2= st.columns((.7,3,3.9,1.1))
     cc2,cc1,cc3=st.columns((1.5,7,.1))
     w111,col111,col222,w222= st.columns((.7,3,4,1))
     hy1,hy2,hy3,hy4,hy5=st.columns((.7,3,2,2,1))
     tr1,tr2,tr3,tr4= st.columns((.7,3,4,1))
-    w1111,col1111,col2222,w2222= st.columns((.7,3,4,1))
+    w1111,col1111,col2222,w2222= st.columns((.7,3,3.9,1.1))
     cc22,cc11,cc33=st.columns((1.5,7,.1))
     ee1,ee2,ee3,ee4= st.columns((.7,3,4,1))
     w4,col4,col44,w44= st.columns((.7,3,4,1))
@@ -79,7 +80,7 @@ def Classification_models(vAR_input_model_type):
 
             # Feature selection
             with col111:
-                st.write("# ")
+                st.write("## ")
                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Feature Selection</span></p>", unsafe_allow_html=True)
             with col222:
                 vAR_input_feature_selection = st.multiselect(' ',colunms,key='fetureselection')
@@ -149,7 +150,7 @@ def Classification_models(vAR_input_model_type):
                                 if st.button("Test the Model"):
                                     st.success("Testing Process Completed")
                             with col5:
-                                st.write("# ")
+                                st.write("## ")
                                 st.markdown("<p style='text-align: left; color: black; font-size:20px;'><span style='font-weight: bold'>Result</span></p>", unsafe_allow_html=True)
                             
                             # Model Prediction
@@ -169,4 +170,16 @@ def Classification_models(vAR_input_model_type):
                                             if result =="Explainable AI":
                                                 with ex2:
                                                     explain_model(rf_classifier, X_test)  # Assuming rf_classifier is your trained model
-                            
+                                    vAR_looker_url = "https://lookerstudio.google.com/reporting/cc1e4a35-eda3-4e21-9cbf-9ccb3f5296ea"    
+                                    st.button('Model Outcome Visualization', on_click=open_page, args=(vAR_looker_url,))
+
+
+
+
+def open_page(url):
+    open_script= """
+        <script type="text/javascript">
+            window.open('%s', '_blank').focus();
+        </script>
+    """ % (url)
+    html(open_script)
